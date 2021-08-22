@@ -14,6 +14,7 @@ public class Main {
     public static void main(String[] args) {
         //InfixEvaluation obj = new InfixEvaluation();
         ExpressionConverter obj1 = new ExpressionConverter();
-        System.out.println(obj1.infixToPrefix("(A+B^C)*D+E^5"));
+        System.out.println(obj1.postfixToInfix("ab*c+"));
+        System.out.println(obj1.infixToPrefix("c+a*b/d^e"));
     }
 }

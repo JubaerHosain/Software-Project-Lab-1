@@ -17,8 +17,8 @@ public class InfixEvaluation {
         
     }
     
-    private boolean isDigit(char digit){
-        if( digit >= '0' && digit <= '9' ){
+    private boolean isDigit(char digit) {
+        if( digit >= '0' && digit <= '9' ) {
             return true;
         } else {
             return false;
@@ -82,7 +82,6 @@ public class InfixEvaluation {
         }
     }
     
-    
     public double evaluate(String input) {
         MyStack<Double> numbers = new MyStack<>();
         MyStack<Character> operators = new MyStack<>();
@@ -130,7 +129,6 @@ public class InfixEvaluation {
                 else {
                     operators.push(ch);
                 }
-                
             } 
             else if(isDigit(ch)) {
                 String add = "";
