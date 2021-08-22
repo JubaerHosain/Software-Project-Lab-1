@@ -13,7 +13,7 @@ public class Main {
    
     public static void main(String[] args) {
         InfixEvaluation obj = new InfixEvaluation();
-        System.out.println(obj.evaluate("(1+(4+5+2)-3)"));
+        System.out.println(obj.evaluate("2-(-2)"));
         
     }
 }
