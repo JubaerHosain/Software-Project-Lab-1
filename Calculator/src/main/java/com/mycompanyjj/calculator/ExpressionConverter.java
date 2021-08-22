@@ -54,12 +54,12 @@ public class ExpressionConverter {
         }
     }
     
-    public String infixToPostfix(String input) {
+    public String infixToPostfix(String infix) {
         String postfix = "";
         MyStack<Character> operators = new MyStack<>();
         
-        for(int i = 0; i < input.length(); i++) {
-            char ch = input.charAt(i);
+        for(int i = 0; i < infix.length(); i++) {
+            char ch = infix.charAt(i);
             
             if(isOperand(ch)) {
                 postfix += ch;

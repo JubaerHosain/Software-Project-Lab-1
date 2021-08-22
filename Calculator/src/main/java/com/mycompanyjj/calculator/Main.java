@@ -12,7 +12,8 @@ package com.mycompanyjj.calculator;
 public class Main {
    
     public static void main(String[] args) {
-        InfixEvaluation obj = new InfixEvaluation();
-        System.out.println(obj.evaluate("10-4+(-4)^2"));
+        //InfixEvaluation obj = new InfixEvaluation();
+        ExpressionConverter obj1 = new ExpressionConverter();
+        System.out.println(obj1.infixToPostfix("A*(B+C)/D"));
     }
 }

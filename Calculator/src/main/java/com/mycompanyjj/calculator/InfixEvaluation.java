@@ -107,8 +107,8 @@ public class InfixEvaluation {
                 
                 i--;
                 numbers.push(-Double.parseDouble(add));
-                
-            } else if(ch == '(') {
+            } 
+            else if(ch == '(') {
                 if(input.charAt(i+1) == '-') {
                     i += 2;
                     String add = "";
@@ -126,11 +126,13 @@ public class InfixEvaluation {
 
                     //i--;
                     numbers.push(-Double.parseDouble(add));
-                } else {
+                } 
+                else {
                     operators.push(ch);
                 }
                 
-            } else if(isDigit(ch)) {
+            } 
+            else if(isDigit(ch)) {
                 String add = "";
                 
                 while(isDigit(ch) || ch == '.') {
@@ -145,8 +147,8 @@ public class InfixEvaluation {
                 
                 i--;
                 numbers.push(Double.parseDouble(add));
-                
-            } else if(ch == ')') {
+            } 
+            else if(ch == ')') {
                 while(operators.top() != '(') {
                     char operator = operators.pop();
                     double b = numbers.pop();
@@ -157,8 +159,8 @@ public class InfixEvaluation {
                 }
                 
                 operators.pop();
-                
-            } else if(isOperator(ch)) {
+            } 
+            else if(isOperator(ch)) {
                 while(operators.size() > 0 && operators.top() != '(' 
                     && precedence(ch) <= precedence(operators.top())) {
                     char operator = operators.pop();
