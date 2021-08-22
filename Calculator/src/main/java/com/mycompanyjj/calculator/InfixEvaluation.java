@@ -90,8 +90,46 @@ public class InfixEvaluation {
         for(int i = 0; i < input.length(); i++) {
             char ch = input.charAt(i);
             
-            if(ch == '(') {
-                operators.push(ch);
+            if(i == 0 && ch == '-') {
+                i++;
+                String add = "";
+                
+                ch = input.charAt(i);
+                while(isDigit(ch) || ch == '.') {
+                    add += ch;
+                    i++;
+                    if(i < input.length()) {
+                        ch = input.charAt(i);
+                    } else {
+                        break;
+                    }
+                }
+                
+                i--;
+                numbers.push(-Double.parseDouble(add));
+                
+            } else if(ch == '(') {
+                if(input.charAt(i+1) == '-') {
+                    i += 2;
+                    String add = "";
+
+                    ch = input.charAt(i);
+                    while(isDigit(ch) || ch == '.') {
+                        add += ch;
+                        i++;
+                        if(i < input.length()) {
+                            ch = input.charAt(i);
+                        } else {
+                            break;
+                        }
+                    }
+
+                    //i--;
+                    numbers.push(Double.parseDouble(add));
+                } else {
+                    operators.push(ch);
+                }
+                
             } else if(isDigit(ch)) {
                 String add = "";
                 
@@ -119,6 +157,7 @@ public class InfixEvaluation {
                 }
                 
                 operators.pop();
+                
             } else if(isOperator(ch)) {
                 while(operators.size() > 0 && operators.top() != '(' 
                     && precedence(ch) <= precedence(operators.top())) {

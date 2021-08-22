@@ -13,7 +13,7 @@ public class Main {
    
     public static void main(String[] args) {
         InfixEvaluation obj = new InfixEvaluation();
-        System.out.println(obj.evaluate("2-(-2)"));
+        System.out.println(obj.evaluate("-2.5+(-2.50000000)"));
         
     }
 }
