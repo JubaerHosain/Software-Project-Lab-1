@@ -125,7 +125,7 @@ public class InfixEvaluation {
                     }
 
                     //i--;
-                    numbers.push(Double.parseDouble(add));
+                    numbers.push(-Double.parseDouble(add));
                 } else {
                     operators.push(ch);
                 }
