@@ -17,8 +17,8 @@ public class ExpressionConverter {
         
     }
     
-    private boolean isOperand(char ch){
-        if((ch>='a' && ch<='z') || (ch>='A' && ch<='Z') || (ch>='0' && ch<='9')){
+    private boolean isOperand(char ch) {
+        if((ch>='a' && ch<='z') || (ch>='A' && ch<='Z') || (ch>='0' && ch<='9')) {
             return true;
         }
         else {
@@ -26,8 +26,8 @@ public class ExpressionConverter {
         }
     }
     
-    private boolean isOperator(char ch){
-        if(ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^'){
+    private boolean isOperator(char ch) {
+        if(ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^') {
             return true;
         }
         else {
@@ -35,9 +35,8 @@ public class ExpressionConverter {
         }
     }
     
-    private int precedence(char ch){
-        switch(ch)
-        {
+    private int precedence(char ch) {
+        switch(ch) {
             case '+':
             case '-':
                 return 1;
@@ -52,6 +51,27 @@ public class ExpressionConverter {
             default:
                 return -1;
         }
+    }
+    
+    private String reverseExpression(String expression) {
+        char string[] = expression.toCharArray();
+
+        for(int i = 0, j = string.length-1;  i < j;  i++, j--) {
+            char temp = string[j];
+            string[j] = string[i];
+            string[i] = temp;
+        }
+        
+        for(int i = 0; i < string.length; i++) {
+            if(string[i] == '(') {
+                string[i] = ')';
+            }
+            else if(string[i] == ')'){
+                string[i] = '(';
+            }
+        }
+
+        return String.valueOf(string);
     }
     
     public String infixToPostfix(String infix) {
@@ -91,5 +111,15 @@ public class ExpressionConverter {
         }
         
         return postfix;
+    }
+    
+    public String infixToPrefix(String infix) {
+        String prefix, postfix;
+        
+        infix = reverseExpression(infix);
+        postfix = infixToPostfix(infix);
+        prefix = reverseExpression(postfix);
+        
+        return prefix;
     }
 }
