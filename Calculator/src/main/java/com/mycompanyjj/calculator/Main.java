@@ -12,10 +12,9 @@ package com.mycompanyjj.calculator;
 public class Main {
    
     public static void main(String[] args) {
-        //InfixEvaluation obj = new InfixEvaluation();
-        ExpressionConverter obj1 = new ExpressionConverter();
-        System.out.println(obj1.postfixToPrefix("ABC/-AK/L-*"));
-        System.out.println(obj1.prefixToPostfix("*-A/BC-/AKL"));
+        NumberConverter obj = new NumberConverter();
+        System.out.println(obj.hexadecimalToDecimal("2AB"));
+        
         
     }
 }
