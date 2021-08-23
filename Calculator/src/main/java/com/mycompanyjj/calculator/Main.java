@@ -14,7 +14,8 @@ public class Main {
     public static void main(String[] args) {
         //InfixEvaluation obj = new InfixEvaluation();
         ExpressionConverter obj1 = new ExpressionConverter();
-        System.out.println(obj1.postfixToInfix("ab*c+"));
-        System.out.println(obj1.infixToPrefix("c+a*b/d^e"));
+        System.out.println(obj1.postfixToPrefix("ABC/-AK/L-*"));
+        System.out.println(obj1.prefixToPostfix("*-A/BC-/AKL"));
+        
     }
 }

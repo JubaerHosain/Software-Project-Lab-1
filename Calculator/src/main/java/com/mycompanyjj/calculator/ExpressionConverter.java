@@ -18,21 +18,11 @@ public class ExpressionConverter {
     }
     
     private boolean isOperand(char ch) {
-        if((ch>='a' && ch<='z') || (ch>='A' && ch<='Z') || (ch>='0' && ch<='9')) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return (ch>='a' && ch<='z') || (ch>='A' && ch<='Z') || (ch>='0' && ch<='9');
     }
     
     private boolean isOperator(char ch) {
-        if(ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^') {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^';
     }
     
     private int precedence(char ch) {
@@ -51,27 +41,6 @@ public class ExpressionConverter {
             default:
                 return -1;
         }
-    }
-    
-    private String reverseExpression(String expression) {
-        char string[] = expression.toCharArray();
-
-        for(int i = 0, j = string.length-1;  i < j;  i++, j--) {
-            char temp = string[j];
-            string[j] = string[i];
-            string[i] = temp;
-        }
-        
-        for(int i = 0; i < string.length; i++) {
-            if(string[i] == '(') {
-                string[i] = ')';
-            }
-            else if(string[i] == ')'){
-                string[i] = '(';
-            }
-        }
-
-        return String.valueOf(string);
     }
     
     public String infixToPostfix(String infix) {
@@ -131,9 +100,9 @@ public class ExpressionConverter {
                 while(!operators.isEmpty() &&  operators.top() != '(') {
                     char operator = operators.pop();
                     
-                    String b = prefix.pop();
-                    String a = prefix.pop();
-                    prefix.push(operator + a + b);
+                    String operand2 = prefix.pop();
+                    String operand1 = prefix.pop();
+                    prefix.push(operator + operand1 + operand2);
                     
                     //String b1 = postfix.pop();
                     //String a2 = postfix.pop();
@@ -149,9 +118,9 @@ public class ExpressionConverter {
                     && precedence(ch) <= precedence(operators.top())) {
                     char operator = operators.pop();
                     
-                    String b = prefix.pop();
-                    String a = prefix.pop();
-                    prefix.push(operator + a + b);
+                    String operand2 = prefix.pop();
+                    String operand1 = prefix.pop();
+                    prefix.push(operator + operand1 + operand2);
                 }
                 
                 operators.push(ch);
@@ -161,9 +130,9 @@ public class ExpressionConverter {
         while(operators.size() > 0) {
             char operator = operators.pop();
                     
-            String b = prefix.pop();
-            String a = prefix.pop();
-            prefix.push(operator + a + b);
+            String operand2 = prefix.pop();
+            String operand1 = prefix.pop();
+            prefix.push(operator + operand1 + operand2);
         }
         
         return prefix.pop();
@@ -179,9 +148,69 @@ public class ExpressionConverter {
                 operands.push(ch + "");
             }
             else if(isOperator(ch)) {
-                String b = operands.pop();
-                String a = operands.pop();
-                operands.push("(" + a + ch + b + ")");
+                String operand2 = operands.pop();
+                String operand1 = operands.pop();
+                operands.push("(" + operand1 + ch + operand2 + ")");
+            }
+        }
+        
+        return operands.pop();
+    }
+    
+    public String prefixToInfix(String prefix) {
+        MyStack<String> operands = new MyStack<>();
+        
+        for(int i = prefix.length()-1; i >= 0; i--) {
+            char ch = prefix.charAt(i);
+            
+            if(isOperand(ch)) {
+                operands.push(ch + "");
+            }
+            else if(isOperator(ch)) {
+                //for postfix to infix
+                //String operand2 = operands.pop();
+                //String operand1 = operands.pop();
+                String operand1 = operands.pop();
+                String operand2 = operands.pop();
+                operands.push("(" + operand1 + ch + operand2 + ")");
+            }
+        }
+        
+        return operands.pop();
+    }
+    
+    public String postfixToPrefix(String postfix) {
+        MyStack<String> operands = new MyStack<>();
+        
+        for(int i = 0; i < postfix.length(); i++) {
+            char ch = postfix.charAt(i);
+            
+            if(isOperand(ch)) {
+                operands.push(ch + "");
+            }
+            else if(isOperator(ch)) {
+                String operand2 = operands.pop();
+                String operand1 = operands.pop();
+                operands.push(ch + operand1 + operand2);
+            }
+        }
+        
+        return operands.pop();
+    }
+    
+    public String prefixToPostfix(String prefix) {
+        MyStack<String> operands = new MyStack<>();
+        
+        for(int i = prefix.length()-1; i >= 0; i--) {
+            char ch = prefix.charAt(i);
+            
+            if(isOperand(ch)) {
+                operands.push(ch + "");
+            }
+            else if(isOperator(ch)) {
+                String operand1 = operands.pop();
+                String operand2 = operands.pop();
+                operands.push(operand1 + operand2 + ch);
             }
         }
         
