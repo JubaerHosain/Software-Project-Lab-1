@@ -20,8 +20,13 @@ public class Main {
     }
     
     public void start() {
-        InfixEvaluation obj1 = new InfixEvaluation();
-        System.out.println(obj1.evaluate("2(-5)+3+(-10/3)*3"));
+//        InfixEvaluation obj1 = new InfixEvaluation();
+//        System.out.println(obj1.evaluate("2(-5)+3+(-10/3)*3"));
+
+        int n = 1;
+        double[][] matrix = {{6, 3}};
+        LinearEquationSolver obj2 = new LinearEquationSolver(matrix, n);
+        obj2.solveEquation();
     }
    
     public static void main(String[] args) {
