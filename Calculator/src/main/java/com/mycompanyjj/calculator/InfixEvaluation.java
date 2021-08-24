@@ -89,6 +89,9 @@ public class InfixEvaluation {
         MyStack<Double> numbers = new MyStack<>();
         MyStack<Character> operators = new MyStack<>();
         
+        //remove all whitespacess
+        input = input.replaceAll("\\s", "");
+        
         for(int i = 0; i < input.length(); i++) {
             char ch = input.charAt(i);
             
