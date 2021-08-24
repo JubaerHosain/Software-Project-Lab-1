@@ -38,7 +38,7 @@ public class LinearEquationSolver {
                 for(int k = 0; k <= size; k++) {
                     double tmp = matrix[i][k];
                     matrix[i][k] = matrix[i + c][k];
-                    matrix[i + c][i] = tmp;
+                    matrix[i + c][k] = tmp;
                 }
             }
             
