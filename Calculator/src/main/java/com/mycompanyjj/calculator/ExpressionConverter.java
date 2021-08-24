@@ -5,7 +5,7 @@
  */
 package com.mycompanyjj.calculator;
 
-import MyLibrary.MyStack;
+import mylibrary.MyStack;
 
 /**
  *

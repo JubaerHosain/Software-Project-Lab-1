@@ -5,16 +5,27 @@
  */
 package com.mycompanyjj.calculator;
 
+import java.util.Scanner;
+
 /**
  *
  * @author jubaer
  */
+
 public class Main {
+    private Scanner scan;
+    
+    public Main() {
+       scan = new Scanner(System.in);
+    }
+    
+    public void start() {
+        InfixEvaluation obj1 = new InfixEvaluation();
+        System.out.println(obj1.evaluate("2(-5)+3+(-10/3)*3"));
+    }
    
     public static void main(String[] args) {
-        NumberConverter obj = new NumberConverter();
-        System.out.println(obj.hexadecimalToDecimal("2AB"));
-        
-        
+        Main obj = new Main();
+        obj.start();
     }
 }

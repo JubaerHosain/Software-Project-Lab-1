@@ -5,7 +5,7 @@
  */
 package com.mycompanyjj.calculator;
 
-import MyLibrary.MyStack;
+import mylibrary.MyStack;
 
 /**
  *
@@ -20,7 +20,8 @@ public class InfixEvaluation {
     private boolean isDigit(char digit) {
         if( digit >= '0' && digit <= '9' ) {
             return true;
-        } else {
+        } 
+        else {
             return false;
         }
     }
@@ -71,7 +72,7 @@ public class InfixEvaluation {
             case '/':
                 if (b == 0)
                     throw new
-                            UnsupportedOperationException("Cannot divide by zero");
+                            UnsupportedOperationException("Cannot divided by zero");
                 return a / b;
                 
             case '^':
@@ -83,12 +84,16 @@ public class InfixEvaluation {
     }
     
     public double evaluate(String input) {
+        //input string should valid
+        //cannot contain space character
         MyStack<Double> numbers = new MyStack<>();
         MyStack<Character> operators = new MyStack<>();
         
         for(int i = 0; i < input.length(); i++) {
             char ch = input.charAt(i);
             
+            //if unary oparator at starting
+            //eg: -1+3 = 3
             if(i == 0 && ch == '-') {
                 i++;
                 String add = "";
@@ -108,6 +113,25 @@ public class InfixEvaluation {
                 numbers.push(-Double.parseDouble(add));
             } 
             else if(ch == '(') {
+                //case like: 2(5) = 10
+                //previous operator of '(' would be '*'
+                if(i > 0 && isDigit(input.charAt(i-1))) {
+                    char oprtr = '*';
+                    
+                    while(operators.size() > 0 && operators.top() != '(' 
+                        && precedence(oprtr) <= precedence(operators.top())) {
+                        char operator = operators.pop();
+                        double b = numbers.pop();
+                        double a = numbers.pop();
+
+                        double result = operation(a, b, operator);
+                        numbers.push(result);
+                    }
+                
+                    operators.push(oprtr);
+                }
+                
+                //handle unary operator like: (-9) = -9
                 if(input.charAt(i+1) == '-') {
                     i += 2;
                     String add = "";
@@ -124,6 +148,12 @@ public class InfixEvaluation {
                     }
 
                     //i--;
+                    //for case like (-10/2) = -5
+                    if(input.charAt(i) != ')') {
+                        i--;
+                        operators.push('(');
+                    }
+                    
                     numbers.push(-Double.parseDouble(add));
                 } 
                 else {
