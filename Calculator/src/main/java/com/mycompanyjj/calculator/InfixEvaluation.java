@@ -83,7 +83,7 @@ public class InfixEvaluation {
         }
     }
     
-    public double evaluate(String input) {
+    public String evaluate(String input) {
         //input string should valid
         //cannot contain space character
         MyStack<Double> numbers = new MyStack<>();
@@ -215,7 +215,7 @@ public class InfixEvaluation {
             numbers.push(result);
         }
         
-        return numbers.pop();
+        return String.valueOf(numbers.pop());
     }
 }
 
