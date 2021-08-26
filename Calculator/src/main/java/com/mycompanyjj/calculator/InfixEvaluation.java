@@ -96,7 +96,7 @@ public class InfixEvaluation {
             char ch = input.charAt(i);
             
             //if unary oparator at starting
-            //eg: -1+3 = 3
+            //eg: -1+3 = 2
             if(i == 0 && ch == '-') {
                 i++;
                 String add = "";

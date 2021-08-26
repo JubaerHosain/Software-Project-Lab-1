@@ -84,16 +84,17 @@ public class LinearEquationSolver {
         
         switch (flag) {
             case 2:
-                System.out.println("Infinite solution exists");
+                System.out.println("Infinite Solution Exists");
                 break;
                 
             case 3:
-                System.out.println("No solution exists");
+                System.out.println("No Solution Exists");
                 break;
                 
             default:
+                char[] variables = {'m', 'n', 'o', 'p', 'q', 'r', 'u', 'v', 'w', 'x', 'y', 'z'};
                 for(int i = 0; i < size; i++)
-                    System.out.println(matrix[i][size] / matrix[i][i]);
+                    System.out.println(variables[i] + " = " + (matrix[i][size] / matrix[i][i]));
                 break;
         }
     }
