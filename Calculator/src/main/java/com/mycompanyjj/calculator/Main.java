@@ -197,7 +197,31 @@ public class Main {
     private void polynomialEquationSolver() {
         while(true) {
             System.out.println("(Polynomial Equation Solver Mode):");
-            return;
+            System.out.println("Enter Order Of Polynomial:");
+            System.out.println("Enter 0 For Go To Main Menue:");
+            
+            int order = scan.nextInt();
+            
+            if(order == 0) {
+                newline();
+                return;
+            } 
+            
+            double[] coefficient = new double[order+1]; 
+            PolynomialEquationSolver obj = new PolynomialEquationSolver();
+            
+            System.out.println("Enter " + (order+1) + " Coefficient: ");
+            for(int i = 0; i <= order; i++)
+                coefficient[i] = scan.nextDouble();
+            
+            switch(order) {
+                case 1:
+                    obj.solveFirstOrder(coefficient);
+                    break;
+                    
+                default:
+                    break;
+            }
         }
     }
     
