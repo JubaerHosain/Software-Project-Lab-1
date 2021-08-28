@@ -1,6 +1,2 @@
-mylibrary/MyStack.class
-com/mycompanyjj/calculator/ExpressionConverter.class
-com/mycompanyjj/calculator/InfixEvaluation.class
 com/mycompanyjj/calculator/LinearEquationSolver.class
-com/mycompanyjj/calculator/NumberConverter.class
 com/mycompanyjj/calculator/Main.class

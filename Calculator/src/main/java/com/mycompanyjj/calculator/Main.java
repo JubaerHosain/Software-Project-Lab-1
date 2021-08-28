@@ -181,7 +181,8 @@ public class Main {
             } 
             else {
                 double[][] matrix = new double[count][count+1];
-                System.out.println("Enter Augmented Matrix(" + count + " row and " + (count+1) + " colum): ");
+                System.out.println("Enter Augmented Matrix(" + count + "x" + (count+1) + "): ");
+                
                 for(int i = 0; i < count; i++) {
                     for(int j = 0; j <= count; j++)
                         matrix[i][j] = scan.nextDouble();
@@ -217,6 +218,14 @@ public class Main {
             switch(order) {
                 case 1:
                     obj.solveFirstOrder(coefficient);
+                    break;
+                    
+                case 2:
+                    obj.solveSecondOrder(coefficient);
+                    break;
+                
+                case 3:
+                    obj.solveThirdOrder(coefficient);
                     break;
                     
                 default:

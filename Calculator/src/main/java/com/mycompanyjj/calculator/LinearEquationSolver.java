@@ -84,11 +84,11 @@ public class LinearEquationSolver {
         
         switch (flag) {
             case 2:
-                System.out.println("Infinite Solution Exists");
+                System.out.println("Infinite Solution Exists.");
                 break;
                 
             case 3:
-                System.out.println("No Solution Exists");
+                System.out.println("No Solution Exists.");
                 break;
                 
             default:
