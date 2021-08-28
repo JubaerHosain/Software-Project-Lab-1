@@ -317,11 +317,11 @@ public class Main {
             System.out.println("Press 0 For Exit: ");
             
             int option = scan.nextInt();
-            scan.nextLine();
             
             switch(option) {
                 case 1:
                     newline();
+                    scan.nextLine();
                     basic();
                     break;
                     

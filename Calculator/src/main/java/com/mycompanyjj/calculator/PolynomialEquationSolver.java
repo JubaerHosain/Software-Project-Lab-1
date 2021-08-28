@@ -21,13 +21,20 @@ public class PolynomialEquationSolver {
     }
     
     public void solveSecondOrder(double[] coeffficient) {
+        //Cardano's formula
         double a = coeffficient[0];
         double b = coeffficient[1];
         double c = coeffficient[2];
         
         double discriminant = b*b - 4*a*c;
         if(discriminant < 0) {
-            System.out.println("No Real Solution Exists.\n");
+            discriminant = -discriminant;
+            double x1re = -b / 2*a;
+            double x1im = Math.sqrt(discriminant) / (2*a);
+            double x2re = -b / 2*a;
+            double x2im = (-1) * Math.sqrt(discriminant) / (2*a);
+            System.out.println("x1 = (" + x1re + ", " + x1im + ")");
+            System.out.println("x2 = (" + x2re + ", " + x2im + ")\n");
         }
         else if(discriminant == 0) {
             System.out.println("x1 = x2 =" + (-b/(2*a)) + '\n');
@@ -41,6 +48,7 @@ public class PolynomialEquationSolver {
     }
     
     public void solveThirdOrder(double[] coeffficient) {
+        //cardano's formula
         double a = coeffficient[0];
         double b = coeffficient[1];
         double c = coeffficient[2];
@@ -52,12 +60,17 @@ public class PolynomialEquationSolver {
            
         double x1, x2, x3;
         if(f == 0 && g == 0 && h == 0) {            // all roots are real and equal
-            x1 = Math.pow((d/a),0.33333333333333333333333333333333);
+            x1 = Math.pow(Math.abs((d/a)),0.33333333333333333333333333333333);
+            if(d/a < 0) x1 = -x1;
             System.out.println("x1 = x2 = x3 = " + x1 + '\n');
         }
         else if(h <= 0) {                           // all 3 roots are real
-            double i = Math.pow((((g*g)/4)-h), 0.5);
-            double j = Math.pow(i, 0.33333333333333333333333333333333);
+            double i = Math.pow(Math.abs((((g*g)/4)-h)), 0.5);
+            if((((g*g)/4)-h) < 0) i = -i;
+            
+            double j = Math.pow(Math.abs(i), 0.33333333333333333333333333333333);
+            if(i < 0) j = -j;
+            
             double k = Math.acos((g/(2*i))*(-1));
             double l = j * -1;
             double m = Math.cos(k/3);
@@ -70,10 +83,13 @@ public class PolynomialEquationSolver {
             System.out.println("x1 = " + x1 + ", x2 = " + x2 + ", x3 = " + x3 + '\n');
         }
         else if(h > 0) {                            // only 1 root is real
-            double r = ((g/2)*(-1)) + Math.pow(h,0.5);
-            double s = Math.pow(r, 0.33333333333333333333333333333333);
-            double t = ((g/2)*(-1)) - Math.pow(h,0.5);
-            double u = Math.pow((t), 0.33333333333333333333333333333333);
+            double r = ((g/2)*(-1)) + Math.pow(h, 0.5);
+            double s = Math.pow(Math.abs(r), 0.33333333333333333333333333333333);
+            if(r < 0) s = -s;
+            
+            double t = ((g/2)*(-1)) - Math.pow(h, 0.5);
+            double u = Math.pow(Math.abs(t), 0.33333333333333333333333333333333);
+            if(t < 0) u = -u;
             
             x1 = (s+u) - (b/(3*a));
             double x2re = (((s+u)*(-1))/2) - (b/(3*a));
