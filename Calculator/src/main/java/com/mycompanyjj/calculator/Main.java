@@ -229,6 +229,8 @@ public class Main {
                     break;
                     
                 default:
+                    HigherOrderPolynomialSolver obj1 = new HigherOrderPolynomialSolver(coefficient, order);
+                    obj1.solveHigherOrder();
                     break;
             }
         }
